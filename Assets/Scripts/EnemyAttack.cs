@@ -36,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
         {
             if (_spawnerBullet != null)
             {
-                _spawnerBullet.SpawnObject(_pointShot.position);
+                _spawnerBullet.SpawnObject(_pointShot.position, _pointShot.rotation);
             }
 
             yield return delay;

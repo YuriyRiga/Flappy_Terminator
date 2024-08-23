@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+
+[RequireComponent(typeof(EnemyAttack))]
 public class Enemy : Objects
 {
     private EnemyAttack _enemyAttack;
@@ -10,9 +12,10 @@ public class Enemy : Objects
         _enemyAttack = GetComponent<EnemyAttack>();
     }
 
-    public void Initialize(SpawnerBulletEnemy spawnerBullet, Vector2 position) 
+    public void Initialize(SpawnerBulletEnemy spawnerBullet, ScoreCounter scoreCounter, Vector2 position) 
     {
         transform.position = position;
+        _scoreCounter = scoreCounter;
         _enemyAttack.Initialize(spawnerBullet);
     }
 
@@ -21,7 +24,6 @@ public class Enemy : Objects
         if (collision.gameObject.TryGetComponent(out Bullet bullet) && bullet.IsPlayerShooter == true)
         {
             Deactivate();
-            _scoreCounter = FindAnyObjectByType<ScoreCounter>();
             _scoreCounter.Add();
         }
     }

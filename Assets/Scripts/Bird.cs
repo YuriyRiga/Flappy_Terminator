@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BirdCollisionHandler))]
 public class Bird : MonoBehaviour
 {
-    private BirdMover _birdMover;
+    private BirdMover _mover;
     private ScoreCounter _scoreCounter;
     private BirdCollisionHandler _handler;
 
@@ -16,7 +16,7 @@ public class Bird : MonoBehaviour
     {
         _scoreCounter = GetComponent<ScoreCounter>();
         _handler = GetComponent<BirdCollisionHandler>();
-        _birdMover = GetComponent<BirdMover>();
+        _mover = GetComponent<BirdMover>();
     }
 
     private void OnEnable()
@@ -29,17 +29,17 @@ public class Bird : MonoBehaviour
         _handler.CollisionDetected -= ProcessCollision;
     }
 
+    public void Reset()
+    {
+        _scoreCounter.Reset();
+        _mover.Reset();
+    }
+
     private void ProcessCollision(IInteractable interactable)
     {
         if (interactable is KillObject)
         {
             GameOver?.Invoke();
         }
-    }
-
-    public void Reset()
-    {
-        _scoreCounter.Reset();
-        _birdMover.Reset();
     }
 }

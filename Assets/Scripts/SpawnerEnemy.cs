@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerEnemy : Spawner<Enemy>
 {
     [SerializeField] private List<SpawnPoint> _spawnPoints;
-
+    [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private SpawnerBulletEnemy _bulletSpawner;
 
     private void OnEnable()
@@ -13,13 +13,13 @@ public class SpawnerEnemy : Spawner<Enemy>
         StartCoroutine(SpawnCouldown());
     }
 
-    protected override void InitializeObject(Enemy obj)
+    protected override void InitializeObject(Enemy enemy)
     {
         int randomIndex = Random.Range(0, _spawnPoints.Count);
         SpawnPoint spawnPoint = _spawnPoints[randomIndex];
 
-        obj.Initialize(_bulletSpawner, spawnPoint.transform.position);
-        base.InitializeObject(obj);
+        enemy.Initialize(_bulletSpawner, _scoreCounter, spawnPoint.transform.position);
+        base.InitializeObject(enemy);
     }
 
     private IEnumerator SpawnCouldown()

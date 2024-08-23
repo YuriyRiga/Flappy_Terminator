@@ -22,10 +22,10 @@ public abstract class Spawner<T> : MonoBehaviour where T : Objects
             maxSize: _poolMaxSize);
     }
 
-    public virtual void SpawnObject(Vector2 position)
+    public virtual void SpawnObject(Vector2 position, Quaternion rotation)
     {
         T obj = Pool.Get();
-        obj.Initialize(position);
+        obj.Initialize(position,rotation);
     }
 
     protected virtual void InitializeObject(T obj)
@@ -34,7 +34,7 @@ public abstract class Spawner<T> : MonoBehaviour where T : Objects
         obj.gameObject.SetActive(true);
     }
 
-    private void Subscribe(T obj)//ddth[
+    private void Subscribe(T obj)
     {
         obj.Disable += OnEnemyDisable;
     }

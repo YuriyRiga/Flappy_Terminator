@@ -1209,6 +1209,7 @@ MonoBehaviour:
   - {fileID: 83542834}
   - {fileID: 143268428}
   - {fileID: 427714154}
+  _scoreCounter: {fileID: 1849644334}
   _bulletSpawner: {fileID: 931348958}
 --- !u!1 &992013736
 GameObject:
