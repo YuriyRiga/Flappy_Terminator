@@ -1,17 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BirdAttack : MonoBehaviour
 {
     [SerializeField] private Transform _pointShot;
     [SerializeField] private SpawnerBulletBird _spawnerBullet;
 
+    private int _mouseButtonAttack = 0;
 
     private void Update()
     {
-        bool _mouseInput = Input.GetMouseButtonDown(0);
-
-        if (_mouseInput)
+        if (Input.GetMouseButtonDown(_mouseButtonAttack))
         {
             Attack();
         }

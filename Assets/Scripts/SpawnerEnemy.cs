@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnerEnemy : Spawner<Enemy>
 {
+    [SerializeField] private float _repeatRate = 5f;
     [SerializeField] private List<SpawnPoint> _spawnPoints;
     [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private SpawnerBulletEnemy _bulletSpawner;
